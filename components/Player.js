@@ -29,7 +29,6 @@ function Player() {
   const [volume, setVolume] = useState(50);
 
   const songInfo = useSongInfo();
-  // console.log(`this is player ${songInfo}`);
 
   const fetchCurrentSong = () => {
     if (!songInfo) {
@@ -78,6 +77,7 @@ function Player() {
     }, 100),
     []
   );
+  // console.log(`this is player ${songInfo?.artists?.[0]?.name}`);
 
   return (
     <div

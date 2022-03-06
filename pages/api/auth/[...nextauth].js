@@ -12,7 +12,7 @@ async function refreshAccessToken(token) {
     return {
       ...token,
       accessToken: refreshedToken.access_token,
-      accessTokenExpires: Date.now() + refreshedToken.expires_in * 100000, //=1 hour as 3600 return spotifyApi
+      accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000, //=1 hour as 3600 return spotifyApi
       refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
     };
   } catch (error) {
@@ -37,7 +37,7 @@ export default NextAuth({
   ],
   secret: process.env.JWT_SECRET,
   pages: {
-    sigIn: "/login",
+    signIn: "/login",
   },
   callbacks: {
     async jwt({ token, account, user }) {
@@ -48,7 +48,7 @@ export default NextAuth({
           accessToken: account.access_token,
           refreshToken: account.refresh_token,
           username: account.providerAccountId,
-          accessTokenExpires: account.expires_at * 10000,
+          accessTokenExpires: account.expires_at * 1000,
         };
       }
 
